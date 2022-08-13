@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f6f6f6;
+}
+
+.App {
+    width: 60%;
+    min-height: 100vh;
+    padding: 20px 20px 0 20px;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 7px 29px 0 rgb(100 100 111 / 20%)
+}
+@media screen and (min-width: 650px) {
+    .App { 
+        width: 640px
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .App {
+        width: 90vw;
+    }
+}
+/* Button */
+.MyBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.MyBtn_default {
+    background: #ececec;
+}
+
+.MyBtn_negative {
+    color: #fff;
+    background: #fd565f;
+}
+
+.MyBtn_positive {
+    color: #fff;
+    background: #64c964;;
+}
+
+/* Header */
+.MyHeader {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.MyHeader .header_btn_left {
+    display: flex;
+    justify-content: start;
+    width: 25%;
+}
+
+.MyHeader .header_btn_right {
+    display: flex;
+    justify-content: end;
+    width: 25%;
+}
+
+.MyHeader .header_text {
+    width: 50%;
+}
+
