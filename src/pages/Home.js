@@ -10,10 +10,12 @@ const Home = () => {
   const [curDate, setCurDate] = useState(new Date());
 
   useEffect(() => {
-    const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1).getTime();
-    const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 1).getTime();
-    const newDiaryList = diaryList.filter((item) => firstDay <= item.date && item.date < lastDay);
-    setCurData(newDiaryList);
+    if (diaryList.length >= 1) {
+      const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1).getTime();
+      const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 1).getTime();
+      const newDiaryList = diaryList.filter((item) => firstDay <= item.date && item.date < lastDay);
+      setCurData(newDiaryList);
+    }
   }, [diaryList, curDate]);
 
   const increaseDate = () => {
@@ -26,14 +28,14 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div>
       <MyHeader
         headerContent={`${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`}
-        leftChild={<MyBtn onClick={decreaseDate} />}
-        rightChild={<MyBtn onClick={increaseDate} />}
+        leftChild={<MyBtn text={'<'} onClick={decreaseDate} />}
+        rightChild={<MyBtn text={'>'} onClick={increaseDate} />}
       />
       <DiaryList data={curData} />
-    </>
+    </div>
   );
 };
 export default Home;
