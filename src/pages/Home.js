@@ -5,7 +5,16 @@ import MyHeader from './../Components/MyHeader';
 import DiaryList from './../Components/DiaryList';
 
 const Home = () => {
+  const diaryList = useContext(DiaryDataContext);
+  const [curData, setCurData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
+
+  useEffect(() => {
+    const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1).getTime();
+    const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0).getTime();
+    const newDiaryList = diaryList.filter((item) => firstDay <= item.date && item.date <= lastDay);
+    setCurData(newDiaryList);
+  }, [diaryList, curDate]);
 
   const increaseDate = () => {
     const newDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1);
@@ -20,10 +29,10 @@ const Home = () => {
     <>
       <MyHeader
         headerContent={`${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`}
-        leftChild={<MyBtn onClick={decreaseDate}/>}
+        leftChild={<MyBtn onClick={decreaseDate} />}
         rightChild={<MyBtn onClick={increaseDate} />}
       />
-      <DiaryList />
+      <DiaryList data={curData}/>
     </>
   );
 };
