@@ -1,6 +1,6 @@
 const MyBtn = ({ text, type, onClick }) => {
   const btn_type = ['positive', 'negative'].includes(type) ? type : 'default';
-  
+
   return (
     <button className={['MyBtn', `MyBtn_${btn_type}`].join(' ')} onClick={onClick}>
       {text}
@@ -10,7 +10,7 @@ const MyBtn = ({ text, type, onClick }) => {
 
 MyBtn.defaultProps = {
   text: '버튼',
-  type: 'default'
-}
+  type: 'default',
+};
 
 export default MyBtn;

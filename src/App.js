@@ -10,7 +10,7 @@ import MyBtn from './Components/MyBtn';
 import MyHeader from './Components/MyHeader';
 
 const reducer = (state, action) => {
-  const newState = [];
+  let newState = [];
   switch (action.type) {
     case 'CREATE': {
       newState = [action.data, ...state];
@@ -22,6 +22,7 @@ const reducer = (state, action) => {
     }
     case 'EDIT': {
       newState = state.map((it) => (it.id === action.data.id ? action.data : it));
+      break
     }
     default:
       return state;
@@ -75,7 +76,6 @@ function App() {
         <BrowserRouter>
           <Reset />
           <div className='App'>
-            <h1>여기는 app</h1>
             <Routes>
               <Route path='/' element={<Home />}></Route>
               <Route path='/edit' element={<Edit />}></Route>

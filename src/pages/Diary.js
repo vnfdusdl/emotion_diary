@@ -4,7 +4,6 @@ const Diary = () => {
   const [searchParams, setSerchParams] = useSearchParams();
   const id = searchParams.get("id");
   console.log('id : ',id);
-//   console.log(id);
   return (
     <>
       <h1>Diary</h1>
