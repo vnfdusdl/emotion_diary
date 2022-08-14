@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DiaryDataContext } from '../App';
 import MyBtn from './../Components/MyBtn';
 import MyHeader from './../Components/MyHeader';
+import DiaryList from './../Components/DiaryList';
 
 const Home = () => {
   const [curDate, setCurDate] = useState(new Date());
+
   const increaseDate = () => {
     const newDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1);
     setCurDate(newDate);
@@ -17,10 +20,10 @@ const Home = () => {
     <>
       <MyHeader
         headerContent={`${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`}
-        leftChild={<MyBtn text={'<'} onClick={decreaseDate} />}
-        rightChild={<MyBtn text={'>'} onClick={increaseDate} />}
+        leftChild={<MyBtn onClick={decreaseDate}/>}
+        rightChild={<MyBtn onClick={increaseDate} />}
       />
-      <h1>홈입니다</h1>
+      <DiaryList />
     </>
   );
 };
