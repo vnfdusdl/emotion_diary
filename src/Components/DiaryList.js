@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { DiaryDataContext } from '../App';
+import { useState } from 'react';
 
 const sortOptionList = [
   { value: 'latest', name: '최신순' },
@@ -22,7 +21,6 @@ const DiaryList = ({ data }) => {
   const [sortType, setSortType] = useState('latest');
   const diaryList = data;
 
-  const [curData, setCurData] = useState([]);
 
   const sortedDiaryList = () => {
     const compareFunc = (a, b) => {

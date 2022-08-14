@@ -11,8 +11,8 @@ const Home = () => {
 
   useEffect(() => {
     const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1).getTime();
-    const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0).getTime();
-    const newDiaryList = diaryList.filter((item) => firstDay <= item.date && item.date <= lastDay);
+    const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 1).getTime();
+    const newDiaryList = diaryList.filter((item) => firstDay <= item.date && item.date < lastDay);
     setCurData(newDiaryList);
   }, [diaryList, curDate]);
 
@@ -32,7 +32,7 @@ const Home = () => {
         leftChild={<MyBtn onClick={decreaseDate} />}
         rightChild={<MyBtn onClick={increaseDate} />}
       />
-      <DiaryList data={curData}/>
+      <DiaryList data={curData} />
     </>
   );
 };
