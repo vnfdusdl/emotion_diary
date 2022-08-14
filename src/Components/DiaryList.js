@@ -63,13 +63,13 @@ const DiaryList = ({ data }) => {
   };
 
   return (
-    <>
+    <div>
       <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
       <EmotionMenu value={emotionType} onChange={setEmotionType} emotionList={emotionList} />
       {sortedDiaryList().map((it, idx) => (
         <div key={idx}>{it.content}</div>
       ))}
-    </>
+    </div>
   );
 };
 
