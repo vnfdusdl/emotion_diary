@@ -159,10 +159,10 @@ body {
 
 .DiaryEditor section h2 {
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .DiaryEditor .select-date #input-date {
-  margin-top: 20px;
   border: none;
   background-color: #ececec;
   padding: 10px 20px;
@@ -187,26 +187,38 @@ body {
   width: 50%;
   margin-bottom: 15px;
 }
+.DiaryEditor .emotion-wrapper .emotion-off {
+  background-color: #ececec;
+}
 
-.DiaryEditor .emotion-wrapper .emotion-1-true {
+.DiaryEditor .emotion-wrapper .emotion-1-on {
   background-color: #64c964;
   color: #fff;
 }
-.DiaryEditor .emotion-wrapper .emotion-2-true {
+.DiaryEditor .emotion-wrapper .emotion-2-on {
   background-color: #9dd772;
   color: #fff;
 }
 
-.DiaryEditor .emotion-wrapper .emotion-3-true {
+.DiaryEditor .emotion-wrapper .emotion-3-on {
   background-color: #fdce17;
   color: #fff;
 }
-.DiaryEditor .emotion-wrapper .emotion-4-true {
+.DiaryEditor .emotion-wrapper .emotion-4-on {
   background-color: #fd8446;
   color: #fff;
 }
-.DiaryEditor .emotion-wrapper .emotion-5-true {
+.DiaryEditor .emotion-wrapper .emotion-5-on {
   background-color: #fd565f;
   color: #fff;
 }
 
+.DiaryEditor .text-wrapper textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 20px;
+  border: none;
+  background-color: #ececec;
+  border-radius: 5px;
+  resize: none;
+}

@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import MyHeader from './MyHeader';
 import MyBtn from './MyBtn';
+import EmotionItem from './EmotionItem';
 
 const emotionList = [
   {
@@ -41,6 +42,10 @@ const DiaryEditor = () => {
 
   const [date, setDate] = useState(defaultDateFunc(new Date()));
   const [emotion, setEmotion] = useState(3);
+  const [content, setContent] = useState("")
+  const handleEmotion = (emotion) => {
+    setEmotion(emotion);
+  };
 
   return (
     <div className='DiaryEditor'>
@@ -63,18 +68,25 @@ const DiaryEditor = () => {
         <h2>오늘의 감정</h2>
         <div className='emotion-wrapper'>
           {emotionList.map((item) => (
-            <div
-              className={[
-                'emotion-col',
-                `emotion-${item.emotion_id}-${emotion === item.emotion_id ? true : false}`,
-              ].join(' ')}
+            <EmotionItem
               key={item.emotion_id}
-              onClick={() => setEmotion(item.emotion_id)}>
-              <img src={item.emotion_img} />
-              <span>{item.emotion_description}</span>
-            </div>
+              {...item}
+              onClick={handleEmotion}
+              isSelected={emotion === item.emotion_id ? true : false}
+            />
           ))}
         </div>
+      </section>
+      <section className='text-wrapper'>
+        <h2>오늘의 일기</h2>
+        <textarea 
+        placeholder='오늘은 어떤 일이 있었나요?'
+        value={content} 
+        onChange={(e)=> setContent(e.target.value)}></textarea>
+      </section>
+      <section>
+        <MyBtn text={'취소하기'} />
+        <MyBtn text={'작성완료'} type={'positive'} />
       </section>
     </div>
   );
