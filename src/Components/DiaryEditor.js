@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { DiaryDispatchContext } from './../App';
 import MyHeader from './MyHeader';
 import MyBtn from './MyBtn';
@@ -44,7 +44,7 @@ const DiaryEditor = () => {
   const [emotion, setEmotion] = useState(3);
   const [content, setContent] = useState('');
   const { onCreate } = useContext(DiaryDispatchContext);
-
+  const textareaRef = useRef();
   const handleEmotion = (emotion) => {
     setEmotion(emotion);
   };
@@ -54,6 +54,10 @@ const DiaryEditor = () => {
     }
   };
   const handleSave = () => {
+    if (content.length < 1) {
+      textareaRef.current.focus();
+      return;
+    }
     onCreate(date, content, emotion);
     navigate('/', { replace: true });
   };
@@ -91,6 +95,7 @@ const DiaryEditor = () => {
       <section className='text-wrapper'>
         <h2>오늘의 일기</h2>
         <textarea
+          ref={textareaRef}
           placeholder='오늘은 어떤 일이 있었나요?'
           value={content}
           onChange={(e) => setContent(e.target.value)}></textarea>

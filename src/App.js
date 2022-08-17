@@ -117,7 +117,7 @@ function App() {
           <div className='App'>
             <Routes>
               <Route path='/' element={<Home />}></Route>
-              <Route path='/edit' element={<Edit />}></Route>
+              <Route path='/edit/:id' element={<Edit />}></Route>
               <Route path='/diary' element={<Diary />}></Route>
               <Route path='/diary/:id' element={<Diary />}></Route>
               <Route path='/new' element={<New />}></Route>
