@@ -20,7 +20,7 @@ const DiaryItem = ({ emotion, content, date, id }) => {
       </div>
       <div className='diary-info' onClick={goDetail}>
         <div>{diaryDate}</div>
-        <div>{content.slice(0,25)}</div>
+        <div>{content}</div>
       </div>
       <div className='btn-wrapper' onClick={goEdit}>
         <MyBtn text={'수정하기'} />

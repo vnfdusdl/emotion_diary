@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-
+import { useState, useContext } from 'react';
+import { DiaryDispatchContext } from './../App';
 import MyHeader from './MyHeader';
 import MyBtn from './MyBtn';
 import EmotionItem from './EmotionItem';
@@ -42,9 +42,20 @@ const DiaryEditor = () => {
 
   const [date, setDate] = useState(defaultDateFunc(new Date()));
   const [emotion, setEmotion] = useState(3);
-  const [content, setContent] = useState("")
+  const [content, setContent] = useState('');
+  const { onCreate } = useContext(DiaryDispatchContext);
+
   const handleEmotion = (emotion) => {
     setEmotion(emotion);
+  };
+  const handleQuit = () => {
+    if (window.confirm('지금까지 작성한 내용은 모두 사라집니다.')) {
+      navigate(-1);
+    }
+  };
+  const handleSave = () => {
+    onCreate(date, content, emotion);
+    navigate('/', { replace: true });
   };
 
   return (
@@ -79,14 +90,14 @@ const DiaryEditor = () => {
       </section>
       <section className='text-wrapper'>
         <h2>오늘의 일기</h2>
-        <textarea 
-        placeholder='오늘은 어떤 일이 있었나요?'
-        value={content} 
-        onChange={(e)=> setContent(e.target.value)}></textarea>
+        <textarea
+          placeholder='오늘은 어떤 일이 있었나요?'
+          value={content}
+          onChange={(e) => setContent(e.target.value)}></textarea>
       </section>
-      <section>
-        <MyBtn text={'취소하기'} />
-        <MyBtn text={'작성완료'} type={'positive'} />
+      <section className='btn-wrapper'>
+        <MyBtn text={'취소하기'} onClick={handleQuit} />
+        <MyBtn text={'작성완료'} type={'positive'} onClick={handleSave} />
       </section>
     </div>
   );

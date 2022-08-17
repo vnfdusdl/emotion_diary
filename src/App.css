@@ -222,3 +222,8 @@ body {
   border-radius: 5px;
   resize: none;
 }
+
+.DiaryEditor .btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
