@@ -144,6 +144,8 @@ body {
   flex-grow: 1;
   padding: 10px 20px;
   text-align: start;
+  white-space: wrap;
+  
 }
 .DiaryItem .diary-info div:first-child {
   font-weight: 700;
