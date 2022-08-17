@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import MyBtn from './MyBtn';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const sortOptionList = [
   { value: 'latest', name: '최신순' },
@@ -15,7 +15,7 @@ const emotionList = [
 
 const SortMenu = ({ value, onChange, sortOptionList }) => {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
+    <select className="SortMenu" value={value} onChange={(e) => onChange(e.target.value)}>
       {sortOptionList.map((item, idx) => (
         <option key={idx} value={item.value}>
           {item.name}
