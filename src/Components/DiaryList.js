@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import MyBtn from './MyBtn';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const sortOptionList = [
   { value: 'latest', name: '최신순' },
@@ -36,12 +38,13 @@ const EmotionMenu = ({ value, onChange, emotionList }) => {
 };
 
 const DiaryList = ({ data }) => {
+  const navigate = useNavigate();
+
   const [sortType, setSortType] = useState('latest');
   const [emotionType, setEmotionType] = useState('all');
   const diaryList = data;
 
   const sortedDiaryList = () => {
-
     const compareFunc = (a, b) => {
       if (sortType === 'latest') {
         return parseInt(b.date) - parseInt(a.date);
@@ -50,14 +53,15 @@ const DiaryList = ({ data }) => {
       }
     };
     const filterFunc = (item) => {
-        if(emotionType === 'good') {
-            return parseInt(item.emotion) <= 3
-        } else {
-            return parseInt(item.emotion) > 3
-        }
-    }
+      if (emotionType === 'good') {
+        return parseInt(item.emotion) <= 3;
+      } else {
+        return parseInt(item.emotion) > 3;
+      }
+    };
     const copyList = JSON.parse(JSON.stringify(diaryList));
-    const filteredList = emotionType === 'all' ? copyList : copyList.filter((item) => filterFunc(item))
+    const filteredList =
+      emotionType === 'all' ? copyList : copyList.filter((item) => filterFunc(item));
     const sortedList = filteredList.sort(compareFunc);
     return sortedList;
   };
@@ -66,6 +70,7 @@ const DiaryList = ({ data }) => {
     <div>
       <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
       <EmotionMenu value={emotionType} onChange={setEmotionType} emotionList={emotionList} />
+      <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={() => navigate('/edit')} />
       {sortedDiaryList().map((it, idx) => (
         <div key={idx}>{it.content}</div>
       ))}
