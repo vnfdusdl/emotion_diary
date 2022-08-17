@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import MyBtn from './MyBtn';
 import { useNavigate } from 'react-router-dom';
+import MyBtn from './MyBtn';
+import DiaryItem from './DiaryItem';
 
 const sortOptionList = [
   { value: 'latest', name: '최신순' },
@@ -56,7 +57,7 @@ const DiaryList = ({ data }) => {
   };
 
   return (
-    <div className='DiaryList'>
+    <section className='DiaryList'>
       <article class="menu-wrapper">
         <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
         <SortMenu value={emotionType} onChange={setEmotionType} sortOptionList={emotionList} />
@@ -64,9 +65,9 @@ const DiaryList = ({ data }) => {
       </article>
 
       {sortedDiaryList().map((it, idx) => (
-        <div key={idx}>{it.content}</div>
+       <DiaryItem key={idx} {...it} />
       ))}
-    </div>
+    </section>
   );
 };
 

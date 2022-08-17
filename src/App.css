@@ -56,7 +56,7 @@ body {
   display: flex;
   align-items: center;
   padding: 10px 20px 20px;
-  border-bottom:  1px solid #ececec;
+  border-bottom: 1px solid #ececec;
 }
 
 .MyHeader .header_btn_left {
@@ -89,6 +89,54 @@ body {
   border-radius: 5px;
 }
 
-.DiaryList .MyBtn {
+.DiaryList .menu-wrapper .MyBtn {
   flex-grow: 1;
 }
+
+/* DiaryItem */
+.DiaryItem {
+  display: flex;
+  padding:15px;
+  border-bottom: 1px solid #ececec;
+  cursor: pointer;
+}
+
+.DiaryItem .emotion-image-wrapper {
+  width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.DiaryItem .emotion-image-wrapper-1 {
+  background-color: #64c964;
+}
+
+.DiaryItem .emotion-image-wrapper-2 {
+  background-color: #9dd772;
+}
+.DiaryItem .emotion-image-wrapper-3 {
+  background-color: #fdce17;
+}
+.DiaryItem .emotion-image-wrapper-4 {
+  background-color: #fd8446;
+}
+.DiaryItem .emotion-image-wrapper-5 {
+  background-color: #fd565f;
+}
+
+.DiaryItem .emotion-image-wrapper img {
+  width: 50%;
+}
+
+.DiaryItem .diary-info {
+  flex-grow: 1;
+  padding: 10px 20px;
+  text-align: start;
+}
+.DiaryItem .diary-info div:first-child {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
