@@ -7,6 +7,12 @@ const sortOptionList = [
   { value: 'oldest', name: '오래된 순' },
 ];
 
+const emotionList = [
+  { value: 'all', name: '모두' },
+  { value: 'good', name: '기분 좋은 날' },
+  { value: 'bad', name: '기분 안좋은 날' },
+];
+
 const SortMenu = ({ value, onChange, sortOptionList }) => {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)}>
@@ -19,23 +25,6 @@ const SortMenu = ({ value, onChange, sortOptionList }) => {
   );
 };
 
-const emotionList = [
-  { value: 'all', name: '모두' },
-  { value: 'good', name: '기분 좋은 날' },
-  { value: 'bad', name: '기분 안좋은 날' },
-];
-
-const EmotionMenu = ({ value, onChange, emotionList }) => {
-  return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
-      {emotionList.map((item, idx) => (
-        <option value={item.value} key={idx}>
-          {item.name}
-        </option>
-      ))}
-    </select>
-  );
-};
 
 const DiaryList = ({ data }) => {
   const navigate = useNavigate();
@@ -67,10 +56,13 @@ const DiaryList = ({ data }) => {
   };
 
   return (
-    <div>
-      <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
-      <EmotionMenu value={emotionType} onChange={setEmotionType} emotionList={emotionList} />
-      <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={() => navigate('/edit')} />
+    <div className='DiaryList'>
+      <article class="menu-wrapper">
+        <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
+        <SortMenu value={emotionType} onChange={setEmotionType} sortOptionList={emotionList} />
+        <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={() => navigate('/edit')} />
+      </article>
+
       {sortedDiaryList().map((it, idx) => (
         <div key={idx}>{it.content}</div>
       ))}
