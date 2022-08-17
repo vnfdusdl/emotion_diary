@@ -1,6 +1,8 @@
+import DiaryEditor from '../Components/DiaryEditor';
+
 const New = () => {
-    return <>
-    <h1>New</h1>
-    </>
-}
+  return (
+   <DiaryEditor />
+  );
+};
 export default New;

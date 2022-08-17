@@ -1,6 +1,16 @@
 * {
   box-sizing: border-box;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
 body {
   margin: 0;
@@ -138,5 +148,65 @@ body {
 .DiaryItem .diary-info div:first-child {
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+/* Diary Editor */
+.DiaryEditor section {
+  margin-bottom: 40px;
+  padding: 20px;
+  text-align: start;
+}
+
+.DiaryEditor section h2 {
+  font-weight: bold;
+}
+
+.DiaryEditor .select-date #input-date {
+  margin-top: 20px;
+  border: none;
+  background-color: #ececec;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.DiaryEditor .select-emotion .emotion-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2%;
+  margin-top: 20px;
+}
+.DiaryEditor .emotion-wrapper .emotion-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  border-radius: 5px;
+}
+
+.DiaryEditor .emotion-wrapper .emotion-col img {
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.DiaryEditor .emotion-wrapper .emotion-1-true {
+  background-color: #64c964;
+  color: #fff;
+}
+.DiaryEditor .emotion-wrapper .emotion-2-true {
+  background-color: #9dd772;
+  color: #fff;
+}
+
+.DiaryEditor .emotion-wrapper .emotion-3-true {
+  background-color: #fdce17;
+  color: #fff;
+}
+.DiaryEditor .emotion-wrapper .emotion-4-true {
+  background-color: #fd8446;
+  color: #fff;
+}
+.DiaryEditor .emotion-wrapper .emotion-5-true {
+  background-color: #fd565f;
+  color: #fff;
 }
 

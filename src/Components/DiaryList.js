@@ -61,7 +61,7 @@ const DiaryList = ({ data }) => {
       <article class="menu-wrapper">
         <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
         <SortMenu value={emotionType} onChange={setEmotionType} sortOptionList={emotionList} />
-        <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={() => navigate('/edit')} />
+        <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={() => navigate('/new')} />
       </article>
 
       {sortedDiaryList().map((it, idx) => (
