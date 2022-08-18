@@ -9,6 +9,11 @@ const Home = () => {
   const [curData, setCurData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
 
+  useEffect(()=>{
+    const titleElement = document.getElementsByTagName('title')[0];
+    titleElement.innerHTML = `감정 일기장`
+  },[])
+
   useEffect(() => {
     if (diaryList.length >= 1) {
       const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1).getTime();

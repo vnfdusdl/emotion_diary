@@ -11,6 +11,12 @@ const Diary = () => {
   const navigate = useNavigate();
   const dataList = useContext(DiaryDataContext);
   const [curData, setCurData] = useState();
+
+  useEffect(()=>{
+    const titleElement = document.getElementsByTagName('title')[0];
+    titleElement.innerHTML = `감정 일기장- 일기 상세 보기`
+  },[])
+
   useEffect(() => {
     if (dataList.length >= 1) {
       const targetData = dataList.find((item) => parseInt(item.id) === parseInt(id));
@@ -29,7 +35,6 @@ const Diary = () => {
     const curEmotion = emotionList.find(
       (item) => parseInt(item.emotion_id) === parseInt(curData.emotion)
     );
-    console.log(curEmotion);
     return (
       <div className='Diary'>
         <MyHeader
