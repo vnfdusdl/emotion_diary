@@ -66,7 +66,7 @@ const dummyData = [
   },
   {
     id: 6,
-    emotion: 6,
+    emotion: 5,
     content : '6번째 일기 1일 0시',
     date : 1661958000000
   },
