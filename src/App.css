@@ -112,7 +112,7 @@ body {
 }
 
 .DiaryItem .emotion-image-wrapper {
-  width: 120px;
+  min-width: 100px;
   height: 80px;
   border-radius: 5px;
   display: flex;
