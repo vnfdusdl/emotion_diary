@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { DiaryDispatchContext } from './../App';
 import MyHeader from './MyHeader';
 import MyBtn from './MyBtn';
 import EmotionItem from './EmotionItem';
 
+// const env = process.env;
+// env.PUBLIC_URL = env.PUBLIC_URL || "";
+
+// console.log(process.env);
 const emotionList = [
   {
     emotion_id: 1,
@@ -37,13 +41,14 @@ const defaultDateFunc = (date) => {
   return date.toISOString().slice(0, 10);
 };
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ isEdit, originData }) => {
+  // console.log(originData)
   const navigate = useNavigate();
 
   const [date, setDate] = useState(defaultDateFunc(new Date()));
   const [emotion, setEmotion] = useState(3);
   const [content, setContent] = useState('');
-  const { onCreate } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
   const textareaRef = useRef();
   const handleEmotion = (emotion) => {
     setEmotion(emotion);
@@ -58,14 +63,26 @@ const DiaryEditor = () => {
       textareaRef.current.focus();
       return;
     }
-    onCreate(date, content, emotion);
+    if (isEdit) {
+      onEdit(originData.id, date, content, emotion)
+    } else {
+      onCreate(date, content, emotion);
+    }
     navigate('/', { replace: true });
   };
+
+  useEffect(() => {
+    if (isEdit) {
+      setDate(defaultDateFunc(new Date(parseInt(originData.date))));
+      setEmotion(parseInt(originData.emotion));
+      setContent(originData.content);
+    }
+  }, [isEdit, originData]);
 
   return (
     <div className='DiaryEditor'>
       <MyHeader
-        headerContent={'새 일기 쓰기'}
+        headerContent={isEdit ? '일기 수정하기' : '새 일기 쓰기'}
         leftChild={<MyBtn text={'< 뒤로 가기'} onClick={() => navigate(-1)} />}
       />
       <section className='select-date'>
