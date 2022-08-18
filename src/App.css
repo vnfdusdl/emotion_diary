@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
+
 * {
   box-sizing: border-box;
+  font-family: 'Noto Serif KR', serif;
 }
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -67,6 +71,7 @@ body {
   align-items: center;
   padding: 10px 20px 20px;
   border-bottom: 1px solid #ececec;
+  font-family: 'Noto Serif KR';
 }
 
 .MyHeader .header_btn_left {
@@ -83,6 +88,7 @@ body {
 
 .MyHeader .header_text {
   width: 50%;
+  font-weight: 700;
 }
 
 /* DiaryList */
@@ -109,6 +115,7 @@ body {
   padding: 15px;
   border-bottom: 1px solid #ececec;
   cursor: pointer;
+  font-family: 'Noto Serif KR';
 }
 
 .DiaryItem .emotion-image-wrapper {
@@ -152,6 +159,10 @@ body {
 }
 
 /* Diary Editor */
+.DiaryEditor {
+  font-family: 'Noto Serif KR';
+}
+
 .DiaryEditor section {
   margin-bottom: 40px;
   padding: 20px;
@@ -232,9 +243,13 @@ body {
 /* Diary */
 .Diary .diary-content {
   padding: 20px;
+  font-family: 'Noto Serif KR';
 }
 .Diary .emotion-wrapper {
   margin-bottom: 100px;
+}
+.Diary h2 {
+  font-weight: 700;
 }
 .Diary .emotion-wrapper .emotion-image-wrapper {
   position: relative;
