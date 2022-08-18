@@ -26,7 +26,10 @@ const Diary = () => {
   if (!curData) {
     return <div>로딩중입니다</div>;
   } else {
-    const curEmotion = emotionList.find((item) => parseInt(item.emotion_id) === parseInt(id));
+    const curEmotion = emotionList.find(
+      (item) => parseInt(item.emotion_id) === parseInt(curData.emotion)
+    );
+    console.log(curEmotion);
     return (
       <div className='Diary'>
         <MyHeader
@@ -37,7 +40,11 @@ const Diary = () => {
         <article className='diary-content'>
           <section className='emotion-wrapper'>
             <h2>오늘의 감정</h2>
-            <div className={['emotion-image-wrapper', `emotion-image-wrapper-${id}`].join(" ")}>
+            <div
+              className={[
+                'emotion-image-wrapper',
+                `emotion-image-wrapper-${curEmotion.emotion_id}`,
+              ].join(' ')}>
               <img src={curEmotion.emotion_img} />
               <span>{curEmotion.emotion_description}</span>
             </div>
