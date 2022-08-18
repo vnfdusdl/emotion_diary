@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext, useRef, useEffect } from 'react';
+import { useState, useContext, useRef, useEffect, useCallback } from 'react';
 import { DiaryDispatchContext } from './../App';
 import MyHeader from './MyHeader';
 import MyBtn from './MyBtn';
@@ -19,14 +19,23 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [content, setContent] = useState('');
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const textareaRef = useRef();
-  const handleEmotion = (emotion) => {
+
+  const handleEmotion = useCallback((emotion) => {
     setEmotion(emotion);
-  };
-  const handleQuit = () => {
-    if (window.confirm('지금까지 작성한 내용은 모두 사라집니다.')) {
+  }, []);
+
+  const handleBack = useCallback(() => {
+    if(window.confirm('지금까지 수정한 내용은 모두 사라집니다')) {
       navigate(-1);
     }
-  };
+  }, []);
+
+  const handleQuit = useCallback(() => {
+    if (window.confirm('지금까지 수정한 내용은 모두 사라집니다.')) {
+      navigate(-1);
+    }
+  }, []);
+
   const handleSave = () => {
     if (content.length < 1) {
       textareaRef.current.focus();
@@ -40,12 +49,12 @@ const DiaryEditor = ({ isEdit, originData }) => {
     navigate('/', { replace: true });
   };
 
-  const handleRemove = () => {
+  const handleRemove = useCallback(() => {
     if (window.confirm('해당 일기를 삭제하시겠습니까?')) {
       onRemove(originData.id);
       navigate('/', { replace: true });
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (isEdit) {
@@ -59,7 +68,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     <div className='DiaryEditor'>
       <MyHeader
         headerContent={isEdit ? '일기 수정하기' : '새 일기 쓰기'}
-        leftChild={<MyBtn text={'< 뒤로 가기'} onClick={() => navigate(-1)} />}
+        leftChild={<MyBtn text={'< 뒤로 가기'} onClick={handleBack} />}
         rightChild={isEdit && <MyBtn text={'삭제하기'} type={'negative'} onClick={handleRemove} />}
       />
       <section className='select-date'>

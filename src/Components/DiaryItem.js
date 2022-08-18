@@ -1,3 +1,4 @@
+import React from 'react';
 import MyBtn from './MyBtn';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,4 +31,4 @@ const DiaryItem = ({ emotion, content, date, id }) => {
     </article>
   );
 };
-export default DiaryItem;
+export default React.memo(DiaryItem);

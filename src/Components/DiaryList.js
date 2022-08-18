@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MyBtn from './MyBtn';
 import DiaryItem from './DiaryItem';
@@ -14,9 +14,9 @@ const emotionList = [
   { value: 'bad', name: '기분 안좋은 날' },
 ];
 
-const SortMenu = ({ value, onChange, sortOptionList }) => {
+const SortMenu = React.memo(({ value, onChange, sortOptionList }) => {
   return (
-    <select className="SortMenu" value={value} onChange={(e) => onChange(e.target.value)}>
+    <select className='SortMenu' value={value} onChange={(e) => onChange(e.target.value)}>
       {sortOptionList.map((item, idx) => (
         <option key={idx} value={item.value}>
           {item.name}
@@ -24,8 +24,7 @@ const SortMenu = ({ value, onChange, sortOptionList }) => {
       ))}
     </select>
   );
-};
-
+});
 
 const DiaryList = ({ data }) => {
   const navigate = useNavigate();
@@ -33,6 +32,10 @@ const DiaryList = ({ data }) => {
   const [sortType, setSortType] = useState('latest');
   const [emotionType, setEmotionType] = useState('all');
   const diaryList = data;
+
+  const handleNavigateNew = useCallback(() => {
+    navigate('/new');
+  }, []);
 
   const sortedDiaryList = () => {
     const compareFunc = (a, b) => {
@@ -58,14 +61,14 @@ const DiaryList = ({ data }) => {
 
   return (
     <section className='DiaryList'>
-      <article className="menu-wrapper">
+      <article className='menu-wrapper'>
         <SortMenu value={sortType} onChange={setSortType} sortOptionList={sortOptionList} />
         <SortMenu value={emotionType} onChange={setEmotionType} sortOptionList={emotionList} />
-        <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={() => navigate('/new')} />
+        <MyBtn text={'새 일기 쓰기'} type={'positive'} onClick={handleNavigateNew} />
       </article>
 
       {sortedDiaryList().map((it, idx) => (
-       <DiaryItem key={idx} {...it} />
+        <DiaryItem key={idx} {...it} />
       ))}
     </section>
   );

@@ -28,7 +28,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className='Home'>
       <MyHeader
         headerContent={`${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`}
         leftChild={<MyBtn text={'<'} onClick={decreaseDate} />}

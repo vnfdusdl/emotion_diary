@@ -1,3 +1,4 @@
+import React from 'react';
 const MyBtn = ({ text, type, onClick }) => {
   const btn_type = ['positive', 'negative'].includes(type) ? type : 'default';
 
@@ -13,4 +14,4 @@ MyBtn.defaultProps = {
   type: 'default',
 };
 
-export default MyBtn;
+export default React.memo(MyBtn);
