@@ -23,25 +23,28 @@ const Diary = () => {
     }
   }, [id, dataList]);
 
-
   if (!curData) {
     return <div>로딩중입니다</div>;
   } else {
-    const curEmotion = emotionList.find((item) => parseInt(item.emotion_id) === parseInt(id))
+    const curEmotion = emotionList.find((item) => parseInt(item.emotion_id) === parseInt(id));
     return (
-      <div>
+      <div className='Diary'>
         <MyHeader
           headerContent={defaultDateFunc(new Date(parseInt(curData.date)))}
           leftChild={<MyBtn text={'< 뒤로가기'} onClick={() => navigate(-1)} />}
           rightChild={<MyBtn text={'수정하기'} onClick={() => navigate(`/edit/${id}`)} />}
         />
-        <article>
-          <section>
+        <article className='diary-content'>
+          <section className='emotion-wrapper'>
             <h2>오늘의 감정</h2>
-            <div>
-            <img src={curEmotion.emotion_img} />
-            <span>{curEmotion.emotion_description}</span>
+            <div className={['emotion-image-wrapper', `emotion-image-wrapper-${id}`].join(" ")}>
+              <img src={curEmotion.emotion_img} />
+              <span>{curEmotion.emotion_description}</span>
             </div>
+          </section>
+          <section className='content-wrapper'>
+            <h2>오늘의 일기</h2>
+            <p className='diary-content'>{curData.content}</p>
           </section>
         </article>
       </div>
